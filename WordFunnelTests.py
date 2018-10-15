@@ -17,7 +17,7 @@ class TestIt(unittest.TestCase):
     def test_bonus_dragoon(self):
         self.assertEqual(WordFunnel.bonus("dragoon"), ["dragon"])
     def test_bonus_boats(self):
-        self.assertEqual(WordFunnel.bonus("boats"), ["oats", "bats", "bots", "boas", "boat"])
+        self.assertEqual(WordFunnel.bonus("boats"), ["bats", "boas", "boat", "bots", "oats"])
     def test_bonus_affidavit(self):
         self.assertEqual(WordFunnel.bonus("affidavit"), [])
 

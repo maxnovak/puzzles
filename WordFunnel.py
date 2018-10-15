@@ -13,5 +13,16 @@ def funnel(word, contains):
 
     return False
 
+def bonus(word):
+    word_file = open("WordList.txt", "r")
+    word_list = word_file.read()
+    found_words = []
+
+    for test_word in word_list.split():
+        if funnel(word, test_word):
+            found_words.append(test_word)
+
+    return found_words
+
 if __name__ == '__main__':
     print(main())

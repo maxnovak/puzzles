@@ -14,8 +14,12 @@ class TestIt(unittest.TestCase):
         self.assertEqual(WordFunnel.funnel("sleet","lets"), False)
     def test_ski(self):
         self.assertEqual(WordFunnel.funnel("skiff","ski"), False)
-    def test_bonus(self):
+    def test_bonus_dragoon(self):
         self.assertEqual(WordFunnel.bonus("dragoon"), ["dragon"])
+    def test_bonus_boats(self):
+        self.assertEqual(WordFunnel.bonus("boats"), ["oats", "bats", "bots", "boas", "boat"])
+    def test_bonus_affidavit(self):
+        self.assertEqual(WordFunnel.bonus("affidavit"), [])
 
 if __name__ == '__main__':
     unittest.main()

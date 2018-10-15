@@ -22,6 +22,7 @@ def bonus(word):
         if funnel(word, test_word):
             found_words.append(test_word)
 
+    word_file.close()
     return found_words
 
 if __name__ == '__main__':

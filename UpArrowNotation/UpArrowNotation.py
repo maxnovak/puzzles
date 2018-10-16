@@ -3,10 +3,12 @@
 def main():
 	return arrow(2,4)
 
-def arrow(base_number, iterations):
-	result = 1
-	for count in range(iterations):
-		result = result * base_number
+def arrow(base_number, iterations, number_of_arrows = 1):
+	if number_of_arrows == 1:
+		return base_number ** iterations
+	result = base_number
+	for item in range(iterations):
+		result = arrow(base_number, iterations, number_of_arrows -1)
 	print(result)
 	return result
 

@@ -7,8 +7,8 @@ def arrow(base_number, iterations, number_of_arrows = 1):
 	if number_of_arrows == 1:
 		return base_number ** iterations
 	result = base_number
-	for item in range(iterations):
-		result = arrow(base_number, iterations, number_of_arrows -1)
+	for item in range(iterations - 1):
+		result = arrow(base_number, result, number_of_arrows -1)
 	print(result)
 	return result
 

@@ -6,6 +6,8 @@ class TestIt(unittest.TestCase):
 		self.assertEqual(arrow(2, 4), 16)
 	def testDoubleArrow(self):
 		self.assertEqual(arrow(2, arrow(2, 4)), 65536)
+	def testTripleArrow(self):
+		self.assertEqual(arrow(2, arrow(2, arrow(2, 3))), 65536)
 
 if __name__ == '__main__':
 	unittest.main()

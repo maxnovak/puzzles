@@ -12,6 +12,12 @@ def roll(number, sides):
 	for number in range(number):
 		result.append(randrange(sides))
 
+	return sum_rolls(result), result
+
+def sum_rolls(rolls):
+	result = 0
+	for roll in rolls:
+		result += roll
 	return result
 
 if __name__ == '__main__':

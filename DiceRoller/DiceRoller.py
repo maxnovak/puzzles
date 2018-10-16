@@ -1,3 +1,4 @@
+'''This one isn't really a puzzle like the others, but was good python practice'''
 '''https://old.reddit.com/r/dailyprogrammer/comments/8s0cy1/20180618_challenge_364_easy_create_a_dice_roller/'''
 from random import *
 import datetime

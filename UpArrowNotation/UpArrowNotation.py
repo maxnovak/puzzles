@@ -13,4 +13,4 @@ def arrow(base_number, iterations, number_of_arrows = 1):
 	return result
 
 if __name__ == '__main__':
-	main()
+	print(main())

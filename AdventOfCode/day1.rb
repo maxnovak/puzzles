@@ -13,5 +13,8 @@ end
 for frequency in read_in_frequencies
 	current_frequency += frequency
 end
+
+terminal_frequency = current_frequency
+
 #Part 1 solution
-puts current_frequency
+puts terminal_frequency

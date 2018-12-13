@@ -39,6 +39,8 @@ puts "Three counts: #{three_counts}"
 #Part 1 solution
 puts "Checksum: #{two_counts * three_counts}"
 
+box_id_1, box_id_2, box_diff_id = 0
+
 list_of_box_ids.each_with_index do |box_id, i|
 	list_of_box_ids[i + 1..list_of_box_ids.size].each do |compare_box_id|
 		box_id_characters = box_id.split('')
@@ -52,8 +54,13 @@ list_of_box_ids.each_with_index do |box_id, i|
 		end
 		if diff == 1
 			#two strings with one difference
-			puts box_id, compare_box_id
+			box_id_1, box_id_2, box_diff_id = box_id, compare_box_id, diff_id
 		end
 		diff = 0
 	end
 end
+
+puts "Two strings with one diff #{box_id_1}, #{box_id_2}"
+
+#Part 2 soltution:
+puts box_id_1[0..box_diff_id-1] + box_id_1[box_diff_id+1..-1]

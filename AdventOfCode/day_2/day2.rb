@@ -38,3 +38,22 @@ puts "Three counts: #{three_counts}"
 
 #Part 1 solution
 puts "Checksum: #{two_counts * three_counts}"
+
+list_of_box_ids.each_with_index do |box_id, i|
+	list_of_box_ids[i + 1..list_of_box_ids.size].each do |compare_box_id|
+		box_id_characters = box_id.split('')
+		comparision_characters = compare_box_id.split('')
+		diff = 0
+		for i in 0..box_id_characters.count
+			if box_id_characters[i] != comparision_characters[i]
+				diff += 1
+				diff_id = i
+			end
+		end
+		if diff == 1
+			#two strings with one difference
+			puts box_id, compare_box_id
+		end
+		diff = 0
+	end
+end

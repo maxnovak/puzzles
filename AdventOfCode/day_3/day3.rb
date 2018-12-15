@@ -13,4 +13,35 @@ File.open("day3_input.txt", "r") do |file|
 	end
 end
 
-p suitClaims
+fabricMap = Array.new(1000){Array.new(1000, 0)}
+
+suitClaims.each_with_index do |claim, i|
+	x1 = claim.startX
+	y1 = claim.startY
+	x2 = claim.startX + claim.width
+	y2 = claim.startY + claim.height
+	puts x1, x2
+	puts y1, y2
+	for i in x1..x2-1
+		for j in y1..y2-1
+			fabricMap[j][i] += 1
+		end
+	end
+end
+
+count=0
+
+fabricMap.each do |row|
+	row.each do |item|
+		if item >= 2
+			count += 1
+		end
+	end
+end
+
+fabricMap.each do |row|
+	p row
+end
+
+#Part 1 solution - 101565
+puts count

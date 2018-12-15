@@ -1,10 +1,10 @@
 class SuitClaim
 	def initialize(id, startX, startY, width, height)
 		@id = id
-		@startX = startX
-		@startY = startY
-		@width = width
-		@height = height
+		@startX = startX.to_i
+		@startY = startY.to_i
+		@width = width.to_i
+		@height = height.to_i
 	end
 
 	def id

@@ -9,7 +9,13 @@ File.open("day3_input.txt", "r") do |file|
 		data = claim_data.split(" ")
 		startCoordinates = data[2].split(",")
 		dimentions = data[3].split("x")
-		suitClaims.push(SuitClaim.new(data[0], startCoordinates[0], startCoordinates[1].tr(":", ""), dimentions[0], dimentions[1]))
+		suitClaims.push(
+			SuitClaim.new(
+				data[0],
+				startCoordinates[0],
+				startCoordinates[1].tr(":", ""),
+				dimentions[0],
+				dimentions[1]))
 	end
 end
 

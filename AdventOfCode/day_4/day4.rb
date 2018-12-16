@@ -46,3 +46,11 @@ p sleepTime
 
 #Part 1 solution
 p guard[0].tr("#", "").to_i * sleepTime
+
+guardSleepSchedule.each do |guard|
+	sleepingTime = guardSleepSchedule[guard[0]].rindex(guardSleepSchedule[guard[0]].max)
+	p "GuardId: #{guard[0]}, Time most asleep: #{sleepingTime} for #{guardSleepSchedule[guard[0]][sleepingTime]} instances"
+end
+
+#Part 2 solution
+p 239*33 #don't wanna store the values right now - took the values from the output and multiplied them here

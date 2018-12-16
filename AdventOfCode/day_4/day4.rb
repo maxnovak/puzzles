@@ -19,8 +19,6 @@ end
 
 events = events.sort_by { |event| [event.date, event.time]  }
 
-pp events
-
 currentGuardId = ""
 startTime = 0
 

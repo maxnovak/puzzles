@@ -41,4 +41,8 @@ end
 
 guard = guardSleepTime.max_by{|key, value| value}
 p guard
-p guardSleepSchedule[guard[0]].rindex(guardSleepSchedule[guard[0]].max)
+sleepTime = guardSleepSchedule[guard[0]].rindex(guardSleepSchedule[guard[0]].max)
+p sleepTime
+
+#Part 1 solution
+p guard[0].tr("#", "").to_i * sleepTime

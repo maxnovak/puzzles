@@ -1,3 +1,3 @@
 # Advent of Code
 
-These problems come from https://adventofcode.com/2018
+Ruby solutions for https://adventofcode.com/2018

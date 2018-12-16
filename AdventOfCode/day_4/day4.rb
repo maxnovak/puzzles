@@ -5,6 +5,8 @@ require_relative "GuardEvent"
 require 'pp'
 
 events = []
+guardSleepTime = {}
+guardSleepTime.default = 0
 
 File.open("day4_input.txt", "r") do |file|
 	file.each_line do |claim_data|
@@ -16,3 +18,21 @@ end
 events = events.sort_by { |event| [event.date, event.time]  }
 
 pp events
+
+currentGuardId = ""
+startTime = 0
+
+#assuming that they only fallasleep and wakeup at 12-1 am
+events.each do |event|
+	if /#/.match(event.event[1])
+		currentGuardId = event.event[1]
+	elsif /falls/.match(event.event[0])
+		startTime = event.time.split(":")[1].to_i
+	elsif /wakes/.match(event.event[0])
+		endTime = event.time.split(":")[1].to_i
+		sleepTime = endTime - startTime
+		guardSleepTime[currentGuardId] = guardSleepTime[currentGuardId] + sleepTime
+	end
+end
+
+p guardSleepTime.sort_by{|_key, value| value}

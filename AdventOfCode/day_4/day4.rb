@@ -7,8 +7,7 @@ require 'pp'
 events = []
 guardSleepTime = {}
 guardSleepTime.default = 0
-guardStartSleep = {}
-guardStartSleep.default = []
+guardSleepSchedule = {}
 
 File.open("day4_input.txt", "r") do |file|
 	file.each_line do |claim_data|
@@ -28,15 +27,18 @@ events.each do |event|
 		currentGuardId = event.event[1]
 	elsif /falls/.match(event.event[0])
 		startTime = event.time.split(":")[1].to_i
-		guardStartSleep[currentGuardId] = guardStartSleep[currentGuardId] + [startTime]
 	elsif /wakes/.match(event.event[0])
 		endTime = event.time.split(":")[1].to_i
 		sleepTime = endTime - startTime
+		guardsSchedule = guardSleepSchedule[currentGuardId] || Array.new(60,0)
+		guardsSchedule[startTime..endTime-1].each.with_index(startTime) do |item, index|
+			guardsSchedule[index] = item + 1
+		end
+		guardSleepSchedule[currentGuardId] = guardsSchedule
 		guardSleepTime[currentGuardId] = guardSleepTime[currentGuardId] + sleepTime
 	end
 end
 
 guard = guardSleepTime.max_by{|key, value| value}
 p guard
-sortedStartTimes = guardStartSleep[guard[0]].inject(Hash.new(0)) { |h,v| h[v] += 1; h}.sort_by{|key, value| value}
-p sortedStartTimes
+p guardSleepSchedule[guard[0]].rindex(guardSleepSchedule[guard[0]].max)

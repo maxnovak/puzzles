@@ -28,7 +28,7 @@ events.each do |event|
 		currentGuardId = event.event[1]
 	elsif /falls/.match(event.event[0])
 		startTime = event.time.split(":")[1].to_i
-		guardStartSleep[currentGuardId] = guardStartSleep[currentGuardId].push(startTime)
+		guardStartSleep[currentGuardId] = guardStartSleep[currentGuardId] + [startTime]
 	elsif /wakes/.match(event.event[0])
 		endTime = event.time.split(":")[1].to_i
 		sleepTime = endTime - startTime

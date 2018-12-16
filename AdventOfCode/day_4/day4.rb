@@ -36,5 +36,7 @@ events.each do |event|
 	end
 end
 
-p guardSleepTime.sort_by{|_key, value| value}
-p guardStartSleep
+guard = guardSleepTime.max_by{|key, value| value}
+p guard
+sortedStartTimes = guardStartSleep[guard[0]].inject(Hash.new(0)) { |h,v| h[v] += 1; h}.sort_by{|key, value| value}
+p sortedStartTimes

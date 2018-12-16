@@ -13,4 +13,6 @@ File.open("day4_input.txt", "r") do |file|
 	end
 end
 
-pp events.sort_by { |event| [event.date, event.time]  }
+events = events.sort_by { |event| [event.date, event.time]  }
+
+pp events

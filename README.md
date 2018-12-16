@@ -1,2 +1,3 @@
-# python puzzles
-Python practice from problems posted on `r/dailyprogrammer`
+# Puzzles
+
+A place to keep puzzles and practice problems

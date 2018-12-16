@@ -7,6 +7,8 @@ require 'pp'
 events = []
 guardSleepTime = {}
 guardSleepTime.default = 0
+guardStartSleep = {}
+guardStartSleep.default = []
 
 File.open("day4_input.txt", "r") do |file|
 	file.each_line do |claim_data|
@@ -28,6 +30,7 @@ events.each do |event|
 		currentGuardId = event.event[1]
 	elsif /falls/.match(event.event[0])
 		startTime = event.time.split(":")[1].to_i
+		guardStartSleep[currentGuardId] = guardStartSleep[currentGuardId].push(startTime)
 	elsif /wakes/.match(event.event[0])
 		endTime = event.time.split(":")[1].to_i
 		sleepTime = endTime - startTime
@@ -36,3 +39,4 @@ events.each do |event|
 end
 
 p guardSleepTime.sort_by{|_key, value| value}
+p guardStartSleep

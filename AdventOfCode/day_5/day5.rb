@@ -40,6 +40,15 @@ def doMagic(sequenceOfLetters)
 		return sequenceOfLetters
 	end
 end
+compareIt = [""]
+output = []
+
+while (compareIt.count != output.count)
+	compareIt = output
+	output = doMagic(sequence)
+	sequence = output
+	p "running"
+end
 
 p sequence
 output = doMagic(sequence)

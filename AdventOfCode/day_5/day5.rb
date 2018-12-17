@@ -47,8 +47,8 @@ while (compareIt.count != output.count)
 	compareIt = output
 	output = doMagic(sequence)
 	sequence = output
-	p "running"
+	p "running #{sequence.count}"
 end
 
-p output
+#Part 1 solution
 p output.count

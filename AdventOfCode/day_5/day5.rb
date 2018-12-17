@@ -50,8 +50,5 @@ while (compareIt.count != output.count)
 	p "running"
 end
 
-p sequence
-output = doMagic(sequence)
-output = doMagic(output)
 p output
-p output == "dabCBAcaDA".split('')
+p output.count

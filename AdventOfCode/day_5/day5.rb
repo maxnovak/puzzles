@@ -36,4 +36,7 @@ def doMagic(sequenceOfLetters)
 end
 
 p sequence
-p doMagic(sequence) == sequence
+output = doMagic(sequence)
+output = doMagic(output)
+p output
+p output == "dabCBAcaDA".split('')

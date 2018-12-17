@@ -1,8 +1,8 @@
 
 #distance between capital and lowercase letters
-comparisonAmount = "a".ord - "A".ord
+$comparisonAmount = "a".ord - "A".ord
 
-p comparisonAmount
+p $comparisonAmount
 
 sequence = ""
 File.open("day5_input.txt", "r") do |file|

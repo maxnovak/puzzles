@@ -44,6 +44,7 @@ end
 compareIt = [""]
 output = []
 testSequence = Array.new(sequence)
+
 while (compareIt.count != output.count)
 	compareIt = output
 	output = doMagic(testSequence)
@@ -53,3 +54,20 @@ end
 
 #Part 1 solution
 p output.count
+
+$letters.each do |letter|
+	simplifiedSequence = Array.new(sequence)
+	simplifiedSequence.delete(letter)
+	simplifiedSequence.delete(letter.upcase)
+
+	compareIt = [""]
+	output = []
+	while (compareIt.count != output.count)
+		compareIt = output
+		output = doMagic(simplifiedSequence)
+		simplifiedSequence = output
+	end
+
+	p "#{letter} gives: #{simplifiedSequence.count}"
+
+end

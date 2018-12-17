@@ -35,7 +35,7 @@ def doMagic(sequenceOfLetters)
 		left = doMagic(sequenceOfLetters[0..sequenceOfLetters.count/2])
 		right = doMagic(sequenceOfLetters[sequenceOfLetters.count/2+1..-1])
 		result = checkValues(left.last, right.first)
-		return left[0..-2] + result + right[1..-1]
+		return left[0..-2] + result + (right.any? ? right[1..-1] : [])
 	else
 		return sequenceOfLetters
 	end

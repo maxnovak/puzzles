@@ -71,3 +71,6 @@ $letters.each do |letter|
 	p "#{letter} gives: #{simplifiedSequence.count}"
 
 end
+
+#Part 2 solution
+#6942 - from the letter m - again just putting here what was printed on the screen

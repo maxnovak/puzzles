@@ -12,6 +12,12 @@ File.open("day5_input.txt", "r") do |file|
 end
 
 def checkValues(left, right)
+	if left == nil
+		return [right]
+	end
+	if right == nil
+		return [left]
+	end
 	difference = left.ord - right.ord
 	if difference.abs == $comparisonAmount
 		return []

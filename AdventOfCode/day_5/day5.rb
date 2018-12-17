@@ -43,12 +43,12 @@ def doMagic(sequenceOfLetters)
 end
 compareIt = [""]
 output = []
-
+testSequence = Array.new(sequence)
 while (compareIt.count != output.count)
 	compareIt = output
-	output = doMagic(sequence)
-	sequence = output
-	p "running #{sequence.count}"
+	output = doMagic(testSequence)
+	testSequence = output
+	p "running #{testSequence.count}"
 end
 
 #Part 1 solution

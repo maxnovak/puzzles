@@ -27,6 +27,9 @@ func main() {
 
 func calculateFuel(mass float64) float64 {
 	fuel := math.Floor(mass / 3) - 2
+	if (math.Floor(fuel / 3) - 2 > 0) {
+		fuel += calculateFuel(fuel)
+	}
 	return fuel
 }
 

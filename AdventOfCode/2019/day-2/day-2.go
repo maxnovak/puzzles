@@ -13,28 +13,23 @@ func main() {
 
 	intcodes := readFile()
 
-	for i := 0; i < len(intcodes); i++ {
-		intcode := intcodes[i]
-		if (intcode == 99) {
+	i := 0
+	for true {
+		optcode := intcodes[i]
+		if (optcode == 99) {
 			fmt.Println("done")
 			break
 		}
-		if (intcode == 1) {
-		fmt.Println(i)
-			valueLocation1 := intcodes[i+1]
-			valueLocation2 := intcodes[i+2]
-			storeLocation := intcodes[i+3]
+		valueLocation1 := intcodes[i+1]
+		valueLocation2 := intcodes[i+2]
+		storeLocation := intcodes[i+3]
+		if (optcode == 1) {
 			intcodes[storeLocation] = intcodes[valueLocation1] + intcodes[valueLocation2]
-			i = i+3
 		}
-		if (intcode == 2) {
-			fmt.Println(i)
-			valueLocation1 := intcodes[i+1]
-			valueLocation2 := intcodes[i+2]
-			storeLocation := intcodes[i+3]
+		if (optcode == 2) {
 			intcodes[storeLocation] = intcodes[valueLocation1] * intcodes[valueLocation2]
-			i = i+3
 		}
+		i += 4
 	}
 	fmt.Println(intcodes)
 }

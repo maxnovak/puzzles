@@ -13,9 +13,14 @@ func main() {
 
 	intcodes := readFile()
 
-	i := 0
 	intcodes[1] = 12
 	intcodes[2] = 2
+
+	fmt.Println(doMath(intcodes)) // Solution for Part 1 5305097
+}
+
+func doMath(intcodes []int) []int{
+	i := 0
 	for true {
 		optcode := intcodes[i]
 		if (optcode == 99) {
@@ -33,7 +38,7 @@ func main() {
 		}
 		i += 4
 	}
-	fmt.Println(intcodes) // Solution for Part 1 5305097
+	return intcodes
 }
 
 func readFile() []int{

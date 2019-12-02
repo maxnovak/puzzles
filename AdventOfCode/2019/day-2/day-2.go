@@ -17,6 +17,19 @@ func main() {
 	intcodes[2] = 2
 
 	fmt.Println(doMath(intcodes)) // Solution for Part 1 5305097
+
+	for value1 := 0; value1 < 100; value1++ {
+		for value2 := 0; value2 < 100; value2++ {
+			intcodes = readFile()
+			intcodes[1] = value1
+			intcodes[2] = value2
+			result := doMath(intcodes)
+			if (result[0] == 19690720) {
+				fmt.Println(value1 * 100 + value2)
+				break
+			}
+		}
+	}
 }
 
 func doMath(intcodes []int) []int{

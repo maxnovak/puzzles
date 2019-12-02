@@ -14,6 +14,8 @@ func main() {
 	intcodes := readFile()
 
 	i := 0
+	intcodes[1] = 12
+	intcodes[2] = 2
 	for true {
 		optcode := intcodes[i]
 		if (optcode == 99) {

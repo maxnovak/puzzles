@@ -37,7 +37,6 @@ func doMath(intcodes []int) []int{
 	for true {
 		optcode := intcodes[i]
 		if (optcode == 99) {
-			fmt.Println("done")
 			break
 		}
 		valueLocation1 := intcodes[i+1]

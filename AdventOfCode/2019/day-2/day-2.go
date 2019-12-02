@@ -33,7 +33,7 @@ func main() {
 		}
 		i += 4
 	}
-	fmt.Println(intcodes)
+	fmt.Println(intcodes) // Solution for Part 1 5305097
 }
 
 func readFile() []int{

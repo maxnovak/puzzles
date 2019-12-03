@@ -12,6 +12,22 @@ func main() {
 	coord1, coord2 := readFile()
 	fmt.Println(coord1)
 	fmt.Println(coord2)
+	graph(coord1)
+	graph(coord2)
+}
+
+func graph(coord1 []string) {
+	for _, location := range coord1 {
+		if location[0] == 'R' {
+			fmt.Println("Right", location[1:len(location)])
+		} else if location[0] == 'L' {
+			fmt.Println("Left", location[1:len(location)])
+		} else if location[0] == 'U' {
+			fmt.Println("Up", location[1:len(location)])
+		} else if location[0] == 'D' {
+			fmt.Println("Down", location[1:len(location)])
+		}
+	}
 }
 
 func readFile() ([]string, []string) {

@@ -17,7 +17,20 @@ func main() {
 	graph2 := graph(coord2)
 	fmt.Println(graph1)
 	fmt.Println(graph2)
+	findMatches(graph1, graph2)
 }
+
+
+func findMatches(graph1 [][]int, graph2 [][]int) {
+	for _, e1 := range graph1 {
+		for _, e2 := range graph2 {
+			if e1[0] == e2[0] && e1[1] == e2[1] {
+				fmt.Println(e1)
+			}
+		}
+	}
+}
+
 
 func graph(coord1 []string) [][]int{
 	var traversal [][]int

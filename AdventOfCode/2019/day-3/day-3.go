@@ -52,7 +52,8 @@ func graph(coord1 []string) [][]int{
 	var traversal [][]int
 	currentx := 0
 	currenty := 0
-	traversal = append(traversal, []int{currentx, currenty})
+	steps := 0
+	traversal = append(traversal, []int{currentx, currenty, steps})
 	for _, location := range coord1 {
 		distance, _ := strconv.Atoi(location[1:len(location)])
 		var newx int
@@ -60,7 +61,8 @@ func graph(coord1 []string) [][]int{
 		if location[0] == 'R' {
 			distance = distance  + currentx + 1
 			for x := currentx+1; x < distance; x++ {
-				traversal = append(traversal, []int{x, currenty})
+				steps++
+				traversal = append(traversal, []int{x, currenty, steps})
 				newx = x
 			}
 			currentx = newx
@@ -68,7 +70,8 @@ func graph(coord1 []string) [][]int{
 		} else if location[0] == 'L' {
 			distance = currentx - distance -1
 			for x := currentx-1; x > distance; x-- {
-				traversal = append(traversal, []int{x, currenty})
+				steps++
+				traversal = append(traversal, []int{x, currenty, steps})
 				newx = x
 			}
 			currentx = newx
@@ -76,7 +79,8 @@ func graph(coord1 []string) [][]int{
 		} else if location[0] == 'U' {
 			distance = distance  + currenty + 1
 			for y := currenty+1; y < distance; y++ {
-				traversal = append(traversal, []int{currentx, y})
+				steps++
+				traversal = append(traversal, []int{currentx, y, steps})
 				newy = y
 			}
 			currenty = newy
@@ -84,7 +88,8 @@ func graph(coord1 []string) [][]int{
 		} else if location[0] == 'D' {
 			distance = currenty - distance -1
 			for y := currenty-1; y > distance; y-- {
-				traversal = append(traversal, []int{currentx, y})
+				steps++
+				traversal = append(traversal, []int{currentx, y, steps})
 				newy = y
 			}
 			currenty = newy

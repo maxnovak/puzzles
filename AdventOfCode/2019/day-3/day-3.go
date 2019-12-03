@@ -17,18 +17,34 @@ func main() {
 	graph2 := graph(coord2)
 	fmt.Println(graph1)
 	fmt.Println(graph2)
-	findMatches(graph1, graph2)
+	manhattanDistance := findMatches(graph1, graph2)
+	fmt.Println(manhattanDistance)
 }
 
+func Abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
 
-func findMatches(graph1 [][]int, graph2 [][]int) {
+func findMatches(graph1 [][]int, graph2 [][]int) int {
+	manhattanDistance := 0
 	for _, e1 := range graph1 {
 		for _, e2 := range graph2 {
 			if e1[0] == e2[0] && e1[1] == e2[1] {
 				fmt.Println(e1)
+				newDistance := Abs(e1[0]) + Abs(e1[1])
+				if manhattanDistance == 0 {
+					manhattanDistance = Abs(e1[0]) + Abs(e1[1])
+				}
+				if manhattanDistance > newDistance {
+					manhattanDistance = newDistance
+				}
 			}
 		}
 	}
+	return manhattanDistance
 }
 
 

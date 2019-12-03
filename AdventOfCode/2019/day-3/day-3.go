@@ -17,8 +17,8 @@ func main() {
 	graph2 := graph(coord2)
 	fmt.Println(graph1)
 	fmt.Println(graph2)
-	manhattanDistance := findMatches(graph1, graph2)
-	fmt.Println(manhattanDistance)
+	manhattanDistance, fewestSteps := findMatches(graph1, graph2)
+	fmt.Println(manhattanDistance, fewestSteps)
 }
 
 func Abs(x int) int {
@@ -28,8 +28,9 @@ func Abs(x int) int {
 	return x
 }
 
-func findMatches(graph1 [][]int, graph2 [][]int) int {
+func findMatches(graph1 [][]int, graph2 [][]int) (int, int) {
 	manhattanDistance := 0
+	fewestSteps := 0
 	for _, e1 := range graph1 {
 		for _, e2 := range graph2 {
 			if e1[0] == e2[0] && e1[1] == e2[1] {
@@ -41,10 +42,18 @@ func findMatches(graph1 [][]int, graph2 [][]int) int {
 				if manhattanDistance > newDistance {
 					manhattanDistance = newDistance
 				}
+
+				numberOfSteps := e1[2] + e2[2]
+				if fewestSteps == 0 {
+					fewestSteps = numberOfSteps
+				}
+				if fewestSteps > numberOfSteps {
+					fewestSteps = numberOfSteps
+				}
 			}
 		}
 	}
-	return manhattanDistance
+	return manhattanDistance, fewestSteps
 }
 
 

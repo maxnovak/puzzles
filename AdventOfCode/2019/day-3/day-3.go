@@ -34,8 +34,8 @@ func findMatches(graph1 [][]int, graph2 [][]int) {
 
 func graph(coord1 []string) [][]int{
 	var traversal [][]int
-	currentx := 1
-	currenty := 1
+	currentx := 0
+	currenty := 0
 	traversal = append(traversal, []int{currentx, currenty})
 	for _, location := range coord1 {
 		distance, _ := strconv.Atoi(location[1:len(location)])

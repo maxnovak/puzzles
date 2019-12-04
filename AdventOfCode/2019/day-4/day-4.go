@@ -8,8 +8,11 @@ import (
 func main() {
 	//Test Cases
 	fmt.Println("111111 ", checkIfValid("111111"))
-	fmt.Println("223450, ", checkIfValid("223450"))
+	fmt.Println("223450 ", checkIfValid("223450"))
 	fmt.Println("123789 ", checkIfValid("123789"))
+	fmt.Println("112233 ", checkIfValid("112233"))
+	fmt.Println("123444 ", checkIfValid("123444"))
+	fmt.Println("111122 ", checkIfValid("111122"))
 
 	validPasswords := 0
 

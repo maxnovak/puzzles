@@ -29,8 +29,8 @@ func main() {
 func checkIfValid(password string) bool{
 	mightBeValid := false
 	for i :=0; i < len(password) -1; i++ {
-		firstChar, _ := strconv.Atoi(string(password[i]))
-		secondChar, _ := strconv.Atoi(string(password[i+1]))
+		firstChar := string(password[i])
+		secondChar := string(password[i+1])
 
 		if (firstChar > secondChar) {
 			return false

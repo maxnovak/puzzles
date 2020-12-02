@@ -44,7 +44,27 @@ func main() {
 			count++
 		}
 	}
-	fmt.Printf("Valid number of passwords: %v", count)
+	fmt.Printf("Valid number of passwords: %v\n", count)
+
+	fmt.Printf("Test case 1 is true, %v\n", isValidPasswordV2(data{
+		minimum:  1,
+		maximum:  3,
+		letter:   "a",
+		password: "abcde",
+	}))
+	fmt.Printf("Test case 2 is false, %v\n", isValidPasswordV2(data{
+		minimum:  1,
+		maximum:  3,
+		letter:   "b",
+		password: "cdefg",
+	}))
+	fmt.Printf("Test case 3 is false, %v", isValidPasswordV2(data{
+		minimum:  2,
+		maximum:  9,
+		letter:   "c",
+		password: "ccccccccc",
+	}))
+
 }
 
 func isValidPassword(data data) bool {
@@ -53,6 +73,13 @@ func isValidPassword(data data) bool {
 		return true
 	}
 
+	return false
+}
+
+func isValidPasswordV2(data data) bool {
+	if (string(data.password[data.minimum-1]) == data.letter && string(data.password[data.maximum-1]) != data.letter) || (string(data.password[data.minimum-1]) != data.letter && string(data.password[data.maximum-1]) == data.letter) {
+		return true
+	}
 	return false
 }
 

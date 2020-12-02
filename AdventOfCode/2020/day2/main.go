@@ -30,7 +30,7 @@ func main() {
 		letter:   "b",
 		password: "cdefg",
 	}))
-	fmt.Printf("Test case 3 is true, %v", isValidPassword(data{
+	fmt.Printf("Test case 3 is true, %v\n", isValidPassword(data{
 		minimum:  2,
 		maximum:  9,
 		letter:   "c",
@@ -58,12 +58,20 @@ func main() {
 		letter:   "b",
 		password: "cdefg",
 	}))
-	fmt.Printf("Test case 3 is false, %v", isValidPasswordV2(data{
+	fmt.Printf("Test case 3 is false, %v\n", isValidPasswordV2(data{
 		minimum:  2,
 		maximum:  9,
 		letter:   "c",
 		password: "ccccccccc",
 	}))
+
+	count2 := 0
+	for _, pass := range passwords {
+		if isValidPasswordV2(pass) {
+			count2++
+		}
+	}
+	fmt.Printf("Valid number of passwords: %v\n", count2)
 
 }
 

@@ -1,7 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
+	"os"
+	"strconv"
 	"strings"
 )
 
@@ -32,6 +36,15 @@ func main() {
 		letter:   "c",
 		password: "ccccccccc",
 	}))
+
+	passwords := readFile()
+	count := 0
+	for _, pass := range passwords {
+		if isValidPassword(pass) {
+			count++
+		}
+	}
+	fmt.Printf("Valid number of passwords: %v", count)
 }
 
 func isValidPassword(data data) bool {
@@ -41,4 +54,35 @@ func isValidPassword(data data) bool {
 	}
 
 	return false
+}
+
+func readFile() []data {
+
+	file, err := os.Open("input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	var passwords []data
+	for scanner.Scan() {
+		output := strings.Split(scanner.Text(), " ")
+		ranges := strings.Split(output[0], "-")
+		minimum, _ := strconv.Atoi(ranges[0])
+		maximum, _ := strconv.Atoi(ranges[1])
+
+		passwords = append(passwords, data{
+			minimum:  minimum,
+			maximum:  maximum,
+			letter:   string(output[1][0]),
+			password: output[2],
+		})
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	return passwords
 }

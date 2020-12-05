@@ -74,7 +74,8 @@ func checkValidPassportDetailed(passport map[string]string) bool {
 		} else {
 			return false
 		}
-		if passport["ecl"] == "amb" || passport["ecl"] == "blu" || passport["ecl"] == "brn" || passport["ecl"] == "gry" || passport["ecl"] == "grn" || passport["ecl"] == "hzl" || passport["ecl"] == "oth" {
+		eclResult, _ := regexp.MatchString(`(amb|blu|brn|gry|grn|hzl|oth)`, passport["ecl"])
+		if eclResult {
 			valid = true
 		} else {
 			return false

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 )
 
 type boardingPass struct {
@@ -16,6 +17,7 @@ func main() {
 	fmt.Println("this is day 5")
 	input := readFile()
 	seatID := 0
+	foundSeats := []int{}
 	for _, boardingPass := range input {
 		row := findRow(boardingPass.row)
 		column := findColumn(boardingPass.column)
@@ -23,8 +25,20 @@ func main() {
 		if testSeatID > seatID {
 			seatID = testSeatID
 		}
+		foundSeats = append(foundSeats, testSeatID)
 	}
-	fmt.Printf("highest Seat ID: %v", seatID)
+	fmt.Println("highest Seat ID: ", seatID)
+	sort.Ints(foundSeats)
+
+	for i, seat := range foundSeats {
+		if i == 0 {
+			continue
+		}
+		if foundSeats[i-1] != seat-1 {
+			fmt.Println("your seat is before: ", seat)
+			break
+		}
+	}
 }
 
 func findRow(row string) int {

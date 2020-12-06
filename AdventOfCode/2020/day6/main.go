@@ -54,9 +54,9 @@ func readFile() []groupsForms {
 		}
 
 		for _, item := range text {
-			groupsForm.questionAnswers[string(item)] = groupsForm.questionAnswers[string(item)] + 1
+			groupsForm.questionAnswers[string(item)]++
 		}
-		groupsForm.total = groupsForm.total + 1
+		groupsForm.total++
 
 	}
 

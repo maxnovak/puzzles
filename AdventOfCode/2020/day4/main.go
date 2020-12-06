@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Println("This is day 3")
+	fmt.Println("This is day 4")
 	passports := readFile()
 
 	countSimple := 0

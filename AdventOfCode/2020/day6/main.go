@@ -7,17 +7,28 @@ import (
 	"os"
 )
 
+type groupsForms struct {
+	total           int
+	questionAnswers map[string]int
+}
+
 func main() {
 	fmt.Println("this is day 6")
 	forms := readFile()
-	sum := 0
+	part1Sum := 0
+	part2Sum := 0
 	for _, item := range forms {
-		sum += len(item)
+		for _, answers := range item.questionAnswers {
+			if item.total == answers {
+				part2Sum++
+			}
+			part1Sum++
+		}
 	}
-	fmt.Println(sum)
+	fmt.Println("Part 1 solution:", part1Sum, "\nPart 2 solution:", part2Sum)
 }
 
-func readFile() []map[string]bool {
+func readFile() []groupsForms {
 
 	file, err := os.Open("input.txt")
 	if err != nil {
@@ -26,18 +37,27 @@ func readFile() []map[string]bool {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	var customsForms []map[string]bool
-	groupsForm := map[string]bool{}
+	var customsForms []groupsForms
+	groupsForm := groupsForms{
+		total:           0,
+		questionAnswers: map[string]int{},
+	}
 	for scanner.Scan() {
 		text := scanner.Text()
 		if text == "" {
 			customsForms = append(customsForms, groupsForm)
-			groupsForm = map[string]bool{}
+			groupsForm = groupsForms{
+				total:           0,
+				questionAnswers: map[string]int{},
+			}
 			continue
 		}
+
 		for _, item := range text {
-			groupsForm[string(item)] = true
+			groupsForm.questionAnswers[string(item)] = groupsForm.questionAnswers[string(item)] + 1
 		}
+		groupsForm.total = groupsForm.total + 1
+
 	}
 
 	if err := scanner.Err(); err != nil {

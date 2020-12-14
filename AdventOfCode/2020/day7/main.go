@@ -16,6 +16,7 @@ type BagRules struct {
 
 type TreeNodes struct {
 	BagType  string       `json:"bagType"`
+	Count    int          `json:"count"`
 	Children []*TreeNodes `json:"children"`
 }
 
@@ -26,7 +27,9 @@ func main() {
 	for _, bagRule := range bagRules {
 		trees = insertToTree(bagRule.parentBag, bagRule.childrenBags, trees)
 	}
+
 	count := 0
+	bagCount := 0
 	for _, tree := range trees {
 		if tree.BagType == "shiny gold bag" {
 			continue
@@ -35,8 +38,32 @@ func main() {
 			count++
 		}
 	}
+	for _, tree := range trees {
+		if tree.BagType == "shiny gold bag" {
+			tree.Count = 1
+			bagCount = traverseChildren(tree)
+		}
+	}
+	//Print out formated trees
+	// formattedTrees, _ := json.MarshalIndent(trees, "", " ")
+	// fmt.Println(string(formattedTrees))
 
-	fmt.Println(count)
+	fmt.Println("Part 1 solution", count)
+	//remove the shiny gold bag from the count
+	fmt.Println("Part 2 solution", bagCount-1)
+}
+
+func traverseChildren(tree TreeNodes) int {
+	numberOfBags := 0
+	for _, child := range tree.Children {
+		if child.BagType == " other bag" {
+			continue
+		} else {
+			numberOfBags += tree.Count * traverseChildren(*child)
+		}
+	}
+	numberOfBags += tree.Count
+	return numberOfBags
 }
 
 func canHoldGoldBag(tree *TreeNodes) bool {
@@ -59,9 +86,10 @@ func insertToTree(bagColor string, allowedBags map[string]int, trees []TreeNodes
 	treeNode := TreeNodes{
 		BagType: bagColor,
 	}
-	for key := range allowedBags {
+	for key, value := range allowedBags {
 		treeNode.Children = append(treeNode.Children, &TreeNodes{
 			BagType: key,
+			Count:   value,
 		})
 	}
 	for _, tree := range treeNode.Children {

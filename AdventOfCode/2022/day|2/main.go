@@ -9,17 +9,20 @@ import (
 )
 
 type Data struct {
-	YourMove  int
-	TheirMove int
-	Score     int
+	YourMove     int
+	TheirMove    int
+	NeededResult int
+	Score        int
 }
 
 func main() {
 	fmt.Println("This is day 2")
 	tournament := readFile()
 	score := resultWithMatches(tournament)
+	score2 := resultWithResult(tournament)
 
 	fmt.Printf("Total Score Part 1: %v \n", score)
+	fmt.Printf("Total Score Part 2: %v \n", score2)
 }
 
 func readFile() []Data {
@@ -34,8 +37,9 @@ func readFile() []Data {
 	for scanner.Scan() {
 		output := strings.Split(scanner.Text(), " ")
 		data = append(data, Data{
-			YourMove:  convertMoveToInt(output[1]),
-			TheirMove: convertMoveToInt(output[0]),
+			YourMove:     convertMoveToInt(output[1]),
+			TheirMove:    convertMoveToInt(output[0]),
+			NeededResult: convertResultToInt(output[1]),
 		})
 
 	}
@@ -57,6 +61,23 @@ func resultWithMatches(listOfMatches []Data) int {
 	return totalScore
 }
 
+func resultWithResult(listOfMatches []Data) int {
+	totalScore := 0
+	for _, match := range listOfMatches {
+		if match.NeededResult == 3 {
+			totalScore += match.TheirMove + 3
+			continue
+		}
+		for i := 1; i < 4; i++ {
+			if determineWinOrLossOrDraw(match.TheirMove, i) == match.NeededResult {
+				totalScore += match.NeededResult + i
+				fmt.Printf("Result: %v, Move: %v Their Move: %v\n ", match.NeededResult, i, match.TheirMove)
+			}
+		}
+	}
+	return totalScore
+}
+
 func determineWinOrLossOrDraw(them int, you int) int {
 	if you == them {
 		return 3
@@ -68,6 +89,19 @@ func determineWinOrLossOrDraw(them int, you int) int {
 		return 0
 	}
 	return 6
+}
+
+func convertResultToInt(input string) int {
+	if input == "X" {
+		return 0
+	}
+	if input == "Y" {
+		return 3
+	}
+	if input == "Z" {
+		return 6
+	}
+	return 0
 }
 
 func convertMoveToInt(input string) int {

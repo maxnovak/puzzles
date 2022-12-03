@@ -8,6 +8,7 @@ import (
 )
 
 type Data struct {
+	fullBag        string
 	compartmentOne string
 	compartmentTwo string
 	sharedItem     rune
@@ -73,13 +74,20 @@ func main() {
 	fmt.Println("This is day 3")
 	bagContents := readFile()
 	totalPriority := 0
+	totalPriority2 := 0
 	for i, item := range bagContents {
 		bagContents[i].sharedItem = findSharedItem(item.compartmentOne, item.compartmentTwo)
 		bagContents[i].priority = characterValues[bagContents[i].sharedItem]
 		totalPriority += bagContents[i].priority
 	}
 
-	fmt.Println(totalPriority)
+	for i := 0; i < len(bagContents); i += 3 {
+		character := findSharedItems(bagContents[i].fullBag, bagContents[i+1].fullBag, bagContents[i+2].fullBag)
+		totalPriority2 += characterValues[character]
+	}
+
+	fmt.Printf("Total Priority Part 1: %v \n", totalPriority)
+	fmt.Printf("Total Priority Part 2: %v \n", totalPriority2)
 
 }
 
@@ -96,6 +104,7 @@ func readFile() []Data {
 		output := scanner.Text()
 		length := len(output)
 		data = append(data, Data{
+			fullBag:        output,
 			compartmentOne: output[:length/2],
 			compartmentTwo: output[length/2:],
 		})
@@ -115,6 +124,20 @@ func findSharedItem(listOne string, listTwo string) rune {
 		for _, compareItem := range listTwo {
 			if item == compareItem {
 				return item
+			}
+		}
+	}
+	return sharedItem
+}
+
+func findSharedItems(listOne string, listTwo string, listThree string) rune {
+	var sharedItem rune
+	for _, item := range listOne {
+		for _, compareItem := range listTwo {
+			for _, compareItem2 := range listThree {
+				if item == compareItem && item == compareItem2 {
+					return item
+				}
 			}
 		}
 	}

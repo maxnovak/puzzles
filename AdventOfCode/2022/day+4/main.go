@@ -20,6 +20,7 @@ func main() {
 	fmt.Println("This is day 4")
 	pairsRanges := readFile()
 	count := 0
+	count2 := 0
 	for _, pair := range pairsRanges {
 		if pair.RangeOneStart <= pair.RangeTwoStart &&
 			pair.RangeTwoEnd <= pair.RangeOneEnd {
@@ -28,8 +29,17 @@ func main() {
 			pair.RangeOneEnd <= pair.RangeTwoEnd {
 			count++
 		}
+
+		if pair.RangeOneStart <= pair.RangeTwoStart &&
+			pair.RangeTwoStart <= pair.RangeOneEnd {
+			count2++
+		} else if pair.RangeTwoStart <= pair.RangeOneStart &&
+			pair.RangeOneStart <= pair.RangeTwoEnd {
+			count2++
+		}
 	}
-	fmt.Println(count)
+	fmt.Printf("Count for fully contains: %v \n", count)
+	fmt.Printf("Count for overlap: %v \n", count2)
 }
 
 func readFile() []Data {

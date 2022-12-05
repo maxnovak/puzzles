@@ -12,8 +12,15 @@ import (
 func main() {
 	fmt.Println("This is day 5")
 	crates, movement := readFile()
+	crates2, movement2 := readFile()
 	crateState := executeMovement(crates, movement)
+	crateState2 := executeMovementSets(crates2, movement2)
+	fmt.Printf("Part 1: ")
 	for _, column := range crateState {
+		fmt.Printf(column[0])
+	}
+	fmt.Printf("\nPart 2: ")
+	for _, column := range crateState2 {
 		fmt.Printf(column[0])
 	}
 }
@@ -105,7 +112,6 @@ func readFile() ([][]string, []Data) {
 }
 
 func executeMovement(crates [][]string, commands []Data) [][]string {
-	fmt.Println(crates)
 	for _, command := range commands {
 		for i := 0; i < command.numberToMove; i++ {
 			moving := crates[command.startColumn-1][:1]
@@ -114,6 +120,19 @@ func executeMovement(crates [][]string, commands []Data) [][]string {
 			crates[command.endColumn-1] = newEndCol
 			crates[command.startColumn-1] = newStartCol
 		}
+	}
+
+	return crates
+}
+
+func executeMovementSets(crates [][]string, commands []Data) [][]string {
+	fmt.Println(crates)
+	for _, command := range commands {
+		moving := crates[command.startColumn-1][:command.numberToMove]
+		newStartCol := append([]string{}, crates[command.startColumn-1][command.numberToMove:]...)
+		newEndCol := append(moving, crates[command.endColumn-1]...)
+		crates[command.endColumn-1] = newEndCol
+		crates[command.startColumn-1] = newStartCol
 	}
 
 	return crates

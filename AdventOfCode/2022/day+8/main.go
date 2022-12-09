@@ -12,8 +12,9 @@ import (
 func main() {
 	fmt.Println("Day 8")
 	forest := readFile()
-	total := findVisible(forest)
-	fmt.Println(total)
+	total, highestScenicScore := findVisible(forest)
+	fmt.Printf("Part 1 Total: %v\n", total)
+	fmt.Printf("Part 2: Highest Score: %v\n", highestScenicScore)
 }
 
 func readFile() [][]int {
@@ -42,8 +43,9 @@ func readFile() [][]int {
 	return data
 }
 
-func findVisible(forest [][]int) int {
+func findVisible(forest [][]int) (int, int) {
 	total := 0
+	highestScenicScore := 0
 	for i, row := range forest {
 		for j, tree := range row {
 			if j == 0 || i == 0 || j == len(row)-1 || i == len(forest)-1 {
@@ -52,32 +54,44 @@ func findVisible(forest [][]int) int {
 			}
 			height := tree
 			visibleLeft := true
+			leftScore := 0
 			visibleRight := true
+			rightScore := 0
 			visibleTop := true
+			topScore := 0
 			visibleBottom := true
-			for k := 0; k < j; k++ { //check left
+			bottomScore := 0
+			for k := j - 1; k >= 0; k-- { //check left
+				leftScore++
 				if height <= row[k] {
 					visibleLeft = false
 					break
 				}
 			}
 			for k := j + 1; k < len(row); k++ { //check right
+				rightScore++
 				if height <= row[k] {
 					visibleRight = false
 					break
 				}
 			}
-			for k := 0; k < i; k++ { //check top
+			for k := i - 1; k >= 0; k-- { //check top
+				topScore++
 				if height <= forest[k][j] {
 					visibleTop = false
 					break
 				}
 			}
 			for k := i + 1; k < len(forest); k++ { //check right
+				bottomScore++
 				if height <= forest[k][j] {
 					visibleBottom = false
 					break
 				}
+			}
+			score := leftScore * rightScore * topScore * bottomScore
+			if score > highestScenicScore {
+				highestScenicScore = score
 			}
 			if visibleBottom || visibleLeft || visibleRight || visibleTop {
 				total++
@@ -85,5 +99,5 @@ func findVisible(forest [][]int) int {
 		}
 	}
 
-	return total
+	return total, highestScenicScore
 }

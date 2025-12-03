@@ -34,3 +34,27 @@ for (let command of commands) {
 }
 
 console.log('Solution 1 Zero Count: ', zeroCount)
+
+// Solution 2
+zeroCount = 0;
+position = dialStart;
+movement = 0;
+for (let command of commands) {
+  if (command.direction === 'R') {
+    movement = position + command.distance;
+    zeroCount += Math.abs(Math.floor((position-1)/100) - Math.floor((movement-1)/100))
+  }
+  if (command.direction === 'L') {
+    movement = position  - command.distance;
+    zeroCount += Math.abs(Math.floor((position)/100) - Math.floor((movement)/100))
+  }
+
+  position = movement % 100
+  if (position < 0) {
+    position += 100
+  }
+
+  console.log('position after turn: ', position, ' zeroCount: ', zeroCount, command);
+}
+
+console.log('Solution 2 Zero Count: ', zeroCount);
